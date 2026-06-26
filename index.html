@@ -259,8 +259,8 @@
 </head>
 <body>
 
-    <!-- Audio Element -->
-    <audio id="bday-audio" src="https://archive.org/download/happy-birthday-to-you-song/Happy%20Birthday%20To%20You%20Song.mp3"></audio>
+    <!-- Audio Element (Will play tunji.mp3 automatically after candle blow) -->
+    <audio id="bday-audio" src="tunji.mp3" loop preload="auto"></audio>
 
     <!-- Canvas for Luxury Confetti -->
     <canvas id="confetti"></canvas>
@@ -279,14 +279,15 @@
     <div id="scene-2" class="scene">
         
         <!-- Neon Quote Bubbles -->
-        <div class="floating-text t1">Keep smiling always!</div>
-        <div class="floating-text t2">Stay awesome!</div>
+        <div class="floating-text t1">Keep smiling always</div>
+        <div class="floating-text t2">Stay awesome</div>
         <div class="floating-text t3">Faculty hoye jau xd</div>
-        <div class="floating-text t4">Keep Shining!</div>
+        <div class="floating-text t4">Keep Shining</div>
 
         <div class="glass-card">
-            <!-- Added Profile Picture -->
-            <img src="tunji13.png" alt="Farhana Tunji" class="profile-pic">
+            <!-- Profile Picture -->
+            <img src="tunji13.png
+            " alt="Farhana Tunji" class="profile-pic">
             
             <h1 class="title">Happy Birthday<br>Tunji!</h1>
             <p class="message">
@@ -312,13 +313,17 @@
         if (isBlown) return;
         isBlown = true;
         
+        // Mobile/Browser Audio Unlock Trick
+        audio.play().catch(e => console.log("Audio unlocked"));
+        audio.pause();
+        
         flame.classList.add('out');
         
         setTimeout(() => {
             scene1.classList.remove('active');
             
             setTimeout(() => {
-                audio.play();
+                audio.play(); // Audio plays automatically here
                 scene2.classList.add('active');
                 startConfetti();
             }, 1000); 
